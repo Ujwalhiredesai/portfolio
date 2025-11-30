@@ -1,0 +1,113 @@
+<!-- templates/index.html -->
+{% extends "layout.html" %}
+{% block body %}
+<header class="site-header">
+  <div class="brand">
+    <h1 id="brand-name">{{ name }}</h1>
+    <p id="brand-tagline">{{ tagline }}</p>
+  </div>
+  <nav class="nav">
+    <a href="#hero">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#ai-lab">AI Lab</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section id="hero" class="section hero theme-dark" data-theme="dark">
+    <div class="hero-inner">
+      <h2 class="huge">Futuristic Intelligence — Built For Real World Impact</h2>
+      <p class="lead">I build AI systems, automation pipelines and data platforms that scale.</p>
+      <div class="cta">
+        <a href="#projects" class="btn">Explore Projects</a>
+        <a href="#ai-lab" class="btn ghost">Try AI Assistant</a>
+      </div>
+    </div>
+    <div class="hero-bg" id="hero-bg"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section projects theme-purple" data-theme="purple">
+    <div class="section-inner">
+      <h3 class="section-title">Selected Projects</h3>
+      <div class="cards">
+        {% for p in projects %}
+        <article class="card" data-theme="{{ p.theme }}" data-id="{{ p.id }}">
+          <div class="card-head">
+            <h4>{{ p.title }}</h4>
+            <p class="muted">{{ p.summary }}</p>
+          </div>
+          <div class="card-tags">
+            {% for t in p.tags %}
+              <span class="tag">{{ t }}</span>
+            {% endfor %}
+          </div>
+          <div class="card-actions">
+            <button class="btn small view-project" data-id="{{ p.id }}">View</button>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- AI LAB -->
+  <section id="ai-lab" class="section ai theme-dark" data-theme="dark">
+    <div class="section-inner">
+      <h3 class="section-title">AI Lab</h3>
+      <p class="muted">Interact with a lightweight assistant about my projects, or get a project recommendation.</p>
+
+      <div class="ai-grid">
+        <div class="ai-chat">
+          <div id="chat-window" class="chat-window"></div>
+          <div class="chat-controls">
+            <input id="chat-in" type="text" placeholder="Ask about my projects or skills..." />
+            <button id="chat-send" class="btn">Send</button>
+          </div>
+        </div>
+
+        <div class="ai-reco">
+          <h4>Recommend a Project</h4>
+          <input id="reco-q" type="text" placeholder="I'm interested in computer vision..." />
+          <button id="reco-btn" class="btn">Recommend</button>
+          <div id="reco-output" class="reco-output"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about theme-blue" data-theme="blue">
+    <div class="section-inner">
+      <h3 class="section-title">About Me</h3>
+      <p>Hello — I'm <strong>Ujwal</strong>. I work at the intersection of AI, data, and automation. I enjoy building systems that make complex decisions reliable and auditable.</p>
+      <ul class="skill-list">
+        <li>Python • NumPy • Pandas</li>
+        <li>PyTorch • Scikit-learn • Transformers</li>
+        <li>ETL • Airflow • Docker • Kubernetes</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact theme-orange" data-theme="orange">
+    <div class="section-inner">
+      <h3 class="section-title">Contact</h3>
+      <p>Want to collaborate? Send a message.</p>
+      <form id="contact-form" class="contact-form">
+        <input name="name" placeholder="Your name" required />
+        <input name="email" placeholder="Email" required />
+        <textarea name="message" placeholder="Message" rows="4"></textarea>
+        <button class="btn">Send</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; {{ now().year }} {{ name }} — Built with Python & ❤️</p>
+</footer>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!-- templates/layout.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ name }}</title>
+  <meta name="description" content="{{ tagline }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <!-- GSAP (for animations) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <!-- optionally include a font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  {% block body %}{% endblock %}
+  <script>
+    const CONFIG = {
+      name: "{{ name }}",
+      tagline: "{{ tagline }}"
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>
